@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+let $router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -23,3 +23,14 @@ export default new Router({
     }
   ]
 })
+
+$router.beforeEach((to, from, next) => {
+  //console.log(to);
+  next();
+})
+
+$router.afterEach((to, from, next) => {
+  //console.log(from);
+  setTimeout(() => window.scrollTo(0, 0), 0)
+})
+export default $router
